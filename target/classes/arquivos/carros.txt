@@ -1,0 +1,10 @@
+[
+  {
+    "placa": "AAA-0000",
+    "tipoVeiculo": "CARRO",
+    "statusVeiculo": "DISPONÍVEL",
+    "marca": "JEEP",
+    "modelo": "RENEGADE",
+    "anoDeFabricao": 2023
+  }
+]
