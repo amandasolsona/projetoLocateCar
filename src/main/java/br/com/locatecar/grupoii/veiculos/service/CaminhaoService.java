@@ -12,7 +12,7 @@ import com.google.gson.GsonBuilder;
 import br.com.locatecar.grupoii.veiculos.model.Caminhao;
 
 public class CaminhaoService implements CrudVeiculos<Caminhao> {
-	static Path path = Paths.get("D:\\Ada\\SantanderCoder\\ModuloIII\\Projetos\\LocateCar\\locatecar\\src\\main\\java\\arquivos\\caminhao.txt");
+	static Path path = Paths.get("C:\\Users\\agame\\IdeaProjects\\projetoLocateCar\\src\\main\\java\\arquivos\\caminhao.txt");
 
 	@Override
 	public void adicionar(List<Caminhao> veiculos) {
@@ -26,7 +26,7 @@ public class CaminhaoService implements CrudVeiculos<Caminhao> {
             }
             Files.writeString(path, saidaVeiculosJson);
 		}catch (Exception e) {
-			System.out.println("Não é possível cadastrar veiculos");
+			System.out.println("Nï¿½o ï¿½ possï¿½vel cadastrar veiculos");
 		}    
 		
 	}

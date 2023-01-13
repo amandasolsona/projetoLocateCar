@@ -5,7 +5,7 @@ public class Carro extends Veiculos{
 	
 	public Carro() {
 		super.setTipoVeiculo(TipoVeiculo.CARRO);
-		super.setStatusVeiculo(StatusVeiculo.DISPONÍVEL);
+		super.setStatusVeiculo(StatusVeiculo.DISPONIVEL);
 	}
 	
 	@Override

@@ -58,8 +58,8 @@ public abstract class Veiculos {
 	
 	@Override
 	public String toString() {
-		return "placa: "+ this.placa+" Tipo Veículo: "+ this.tipoVeiculo+" Status Veiculo: "+ this.statusVeiculo+
-				" Marca: "+this.marca+" Modelo: "+this.modelo+" Ano Fabricação: "+this.anoDeFabricao;
+		return "placa: "+ this.placa+" Tipo Veiculo: "+ this.tipoVeiculo+" Status Veiculo: "+ this.statusVeiculo+
+				" Marca: "+this.marca+" Modelo: "+this.modelo+" Ano Fabricacao: "+this.anoDeFabricao;
 	}
 	
 	

@@ -1,8 +1,8 @@
 [
   {
     "placa": "ABC-9792",
-    "tipoVeiculo": "CAMINHÃO",
-    "statusVeiculo": "DISPONÍVEL",
+    "tipoVeiculo": "CAMINHAO",
+    "statusVeiculo": "DISPONIVEL",
     "marca": "SCANIA",
     "modelo": "Highline R440"
   }

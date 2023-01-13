@@ -4,6 +4,6 @@ public class Moto extends Veiculos{
 	
 	public Moto() {
 		super.setTipoVeiculo(TipoVeiculo.MOTO);
-		super.setStatusVeiculo(StatusVeiculo.DISPONÍVEL);
+		super.setStatusVeiculo(StatusVeiculo.DISPONIVEL);
 	}
 }

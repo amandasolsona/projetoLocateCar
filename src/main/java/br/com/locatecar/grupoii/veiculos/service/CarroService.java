@@ -15,7 +15,7 @@ import br.com.locatecar.grupoii.veiculos.model.Carro;
 
 public class CarroService implements CrudVeiculos<Carro> {
 	
-	static Path path = Paths.get("D:\\Ada\\SantanderCoder\\ModuloIII\\Projetos\\LocateCar\\locatecar\\src\\main\\java\\arquivos\\carros.txt");
+	static Path path = Paths.get("C:\\Users\\agame\\IdeaProjects\\projetoLocateCar\\src\\main\\java\\arquivos\\carros.txt");
 
 	@Override
 	public void adicionar(List<Carro> veiculos) {
@@ -29,7 +29,7 @@ public class CarroService implements CrudVeiculos<Carro> {
             }
             Files.writeString(path, saidaCarroJson);
 		}catch (Exception e) {
-			System.out.println("Não é possível cadastrar veiculos");
+			System.out.println("Nï¿½o ï¿½ possï¿½vel cadastrar veiculos");
 		}    
 		
 	}
@@ -45,7 +45,7 @@ public class CarroService implements CrudVeiculos<Carro> {
 			}
 			linha = Files.readString(path);
 		}catch (Exception e) {
-			System.out.println("Lista não encontrada");
+			System.out.println("Lista nï¿½o encontrada");
 			return carros;
 		}
 		
@@ -74,7 +74,7 @@ public class CarroService implements CrudVeiculos<Carro> {
             }
             Files.writeString(path, saidaCarroJson);
 		}catch (Exception e) {
-			System.out.println("Não é possível excluir veiculo");
+			System.out.println("Nï¿½o ï¿½ possï¿½vel excluir veiculo");
 		}    
 		
 	}
