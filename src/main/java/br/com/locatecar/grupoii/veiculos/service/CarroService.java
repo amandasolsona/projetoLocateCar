@@ -12,10 +12,11 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import br.com.locatecar.grupoii.veiculos.model.Carro;
+import br.com.locatecar.grupoii.veiculos.util.CrudVeiculos;
 
 public class CarroService implements CrudVeiculos<Carro> {
 	
-	static Path path = Paths.get("C:\\Users\\agame\\IdeaProjects\\projetoLocateCar\\src\\main\\java\\arquivos\\carros.txt");
+	static Path path = Paths.get("D:\\Ada\\SantanderCoder\\ModuloIII\\Projetos\\LocateCar\\locatecar\\src\\main\\java\\arquivos\\carros.txt");
 
 	@Override
 	public void adicionar(List<Carro> veiculos) {
@@ -29,7 +30,7 @@ public class CarroService implements CrudVeiculos<Carro> {
             }
             Files.writeString(path, saidaCarroJson);
 		}catch (Exception e) {
-			System.out.println("N�o � poss�vel cadastrar veiculos");
+			System.out.println("Não foi possível cadastrar o veículo!");
 		}    
 		
 	}
@@ -42,10 +43,11 @@ public class CarroService implements CrudVeiculos<Carro> {
 		try {
 			if(!Files.exists(path)) {
 				Files.createFile(path);
+				Files.writeString(path, "[]");
 			}
 			linha = Files.readString(path);
 		}catch (Exception e) {
-			System.out.println("Lista n�o encontrada");
+			System.out.println("Lista Não Encontrada");
 			return carros;
 		}
 		
@@ -54,41 +56,71 @@ public class CarroService implements CrudVeiculos<Carro> {
 		
 		return carros;
 	}
-
+	
 	@Override
-	public void remover(List<Carro> veiculos, String placa) {
-		
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	public List<Carro> localizar(String placa) {
+		List<Carro> veiculos = this.listar();
+		List<Carro> veiculosLocalizados = new ArrayList<Carro>();
 		for(int i = 0; i< veiculos.size(); i++) {
 			if(veiculos.get(i).getPlaca().equals(placa)){
-				veiculos.remove(i);
+				Carro carro = veiculos.get(i);
+				veiculosLocalizados.add(carro);
 				}
 		}	
+		return veiculosLocalizados;
+	}
+
+	@Override
+	public void remover(String placa) {
+		List<Carro> veiculosLocalizados = this.localizar(placa);
+		List<Carro> veiculos = this.listar();
+		
+		if(veiculosLocalizados.isEmpty()) {
+			System.out.println("Não Foi Localizado Nenhum Veiculo Com essa placa para Exclusão");
+		}else{
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			for(int i = 0; i < veiculos.size(); i++ ) {
+				for(int j = 0; j < veiculosLocalizados.size(); j++) {
+					if(veiculos.get(i).getPlaca().equals(veiculosLocalizados.get(j).getPlaca())) {
+						veiculos.remove(i);
+					}
+				}
+			}
+			String saidaVeiculoJson = gson.toJson(veiculos);
 			
-		String saidaCarroJson = gson.toJson(veiculos);
+			try{
+	            if(!Files.exists(path)){
+	                Files.createFile(path);
+	                Files.writeString(path, "[]");
+	            }
+	            Files.writeString(path, saidaVeiculoJson);
+			}catch (Exception e) {
+				System.out.println("Não é possível excluir o veiculo");
+			}    
+			
+		}
 		
-		try{
-            if(!Files.exists(path)){
-                Files.createFile(path);
-                Files.writeString(path, "[]");
-            }
-            Files.writeString(path, saidaCarroJson);
-		}catch (Exception e) {
-			System.out.println("N�o � poss�vel excluir veiculo");
-		}    
+	}
+
+
+	@Override
+	public void editar(String placa) {
 		
 	}
 
 	@Override
-	public void editar(List<Carro> veiculos) {
-		// TODO Auto-generated method stub
+	public List<Carro> localizarPorParteDoNome(String modelo) {
+		List<Carro> listaDeCorrepondente = new ArrayList<Carro>();
+		List<Carro> carros = this.listar();
+		for(Carro carro : carros) {
+			if(carro.getModelo().contains(modelo)) {
+				listaDeCorrepondente.add(carro);
+			}
+		}
+		
+		return listaDeCorrepondente;
 		
 	}
 
-	@Override
-	public void atualizar(List<Carro> veiculos) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

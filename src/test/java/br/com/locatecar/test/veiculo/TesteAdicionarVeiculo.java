@@ -3,6 +3,8 @@ package br.com.locatecar.test.veiculo;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.locatecar.grupoii.agencia.model.Agencia;
+import br.com.locatecar.grupoii.agencia.service.AgenciaService;
 import br.com.locatecar.grupoii.veiculos.model.Caminhao;
 import br.com.locatecar.grupoii.veiculos.model.Carro;
 import br.com.locatecar.grupoii.veiculos.model.Moto;
@@ -12,6 +14,7 @@ import br.com.locatecar.grupoii.veiculos.service.CarroService;
 public class TesteAdicionarVeiculo {
 
 	public static void main(String[] args) {
+		// criando os objetos
 		Carro c1 = new Carro();
 		c1.setPlaca("ZZZ-9999"); c1.setMarca("FIAT");c1.setModelo("PALIO"); ;c1.setAnoDeFabricao(2010);
 		Carro c2 = new Carro();
@@ -27,6 +30,7 @@ public class TesteAdicionarVeiculo {
 		List<Moto> motos = new ArrayList<Moto>();
 		List<Caminhao> caminhoes = new ArrayList<Caminhao>();
 		
+		// adicionando os objetos a lista
 		carros.add(c1); carros.add(c2);
 		motos.add(m1); motos.add(m2);
 		caminhoes.add(caminhao);
@@ -36,12 +40,24 @@ public class TesteAdicionarVeiculo {
 		
 		CarroService carroService = new CarroService();
 		carroService.adicionar(carros);
+		
+		//Exibindo os veículos da lista
 		List<Carro> listarCarros = carroService.listar();
 		for(int i = 0; i<listarCarros.size(); i++) {
 			System.out.println(listarCarros.get(i));
 		}
 		
-		carroService.remover(listarCarros, "ZZZ-9999");
+		Carro carro = listarCarros.get(0);
+		AgenciaService agenciaService = new AgenciaService();
+		List<Agencia> listaAgencia = agenciaService.listar();
+		carro.setIdAgencia(listaAgencia.get(0));
+		System.out.println(listarCarros.get(0));
+		
+		Carro carro1 = listarCarros.get(1);
+		agenciaService = new AgenciaService();
+		listaAgencia = agenciaService.listar();
+		carro1.setIdAgencia(listaAgencia.get(1));
+		System.out.println(listarCarros.get(1));
 		
 	}
 
