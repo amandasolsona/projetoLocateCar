@@ -1,5 +1,6 @@
 package br.com.locatecar.grupoii.view;
 
+import java.util.List;
 import java.util.Scanner;
 
 import br.com.locatecar.grupoii.agencia.model.Agencia;
@@ -161,8 +162,42 @@ public class View {
 	
 	// INICIO DOS METODOS MENU AGENCIA
     public void menuAgencia() {
-		
+		Boolean continuarMenu = true;
+		System.out.println("..:    Menu Agencia   :..");
+		do {
+			System.out.println("Escolha uma opção para realizar abaixo: ");
+			System.out.println("1 - Buscar agência por filtro de pesquisa");
+			System.out.println("0 - Sair");
+			switch(scanner.nextLine()) {
+				case "1" -> buscarAgenciaPorFiltro();
+				case "0" -> continuarMenu = false;
+				default -> System.out.println("Ops, opção inválida!");
+			}
+
+		}while(continuarMenu);
 	}
+
+	public void buscarAgenciaPorFiltro() {
+
+		System.out.println("..:    Busca de Agencia   :..");
+		try{
+			System.out.println("Digite o termo para pesquisar: ");
+			String termoPesquisa = scanner.nextLine();
+			List<Agencia> agenciasEncontradas = new AgenciaService().buscarAgenciaPorNomeLogradouro(termoPesquisa);
+			System.out.println("Total de agencias encontradas: " + agenciasEncontradas.size());
+			if(agenciasEncontradas.isEmpty()) {
+				System.out.println("Não foram encontradas agencias por esse termo.");
+			} else {
+				System.out.println("Abaixo as agencias encontradas: ");
+				for (Agencia agencia : agenciasEncontradas) {
+					System.out.println(agencia);
+				}
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage()+"\n");
+		}
+	}
+
     public void menuClientes() {
 		
 	}
