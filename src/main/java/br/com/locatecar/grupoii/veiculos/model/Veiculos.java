@@ -2,6 +2,8 @@ package br.com.locatecar.grupoii.veiculos.model;
 
 import java.util.List;
 
+import br.com.locatecar.grupoii.agencia.model.Agencia;
+
 public abstract class Veiculos {
 	
 	private String placa;
@@ -11,7 +13,15 @@ public abstract class Veiculos {
 	private String marca;
 	private String modelo;
 	private Integer anoDeFabricao;
+	private Integer IdAgencia = null;
 	
+	public Integer getIdAgencia() {
+		return this.IdAgencia;
+	}
+	
+	public void setIdAgencia(Agencia agencia) {
+		this.IdAgencia = agencia.getId();
+	}
 	
 	public String getMarca() {
 		return marca;
@@ -59,7 +69,7 @@ public abstract class Veiculos {
 	@Override
 	public String toString() {
 		return "placa: "+ this.placa+" Tipo Veiculo: "+ this.tipoVeiculo+" Status Veiculo: "+ this.statusVeiculo+
-				" Marca: "+this.marca+" Modelo: "+this.modelo+" Ano Fabricacao: "+this.anoDeFabricao;
+				" Marca: "+this.marca+" Modelo: "+this.modelo+" Ano Fabricacao: "+this.anoDeFabricao+" Id da Agência: "+this.IdAgencia;
 	}
 	
 	
